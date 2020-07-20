@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 open class EntryModel {
 
+    @SerializedName("id")
+    val id: String = ""
+
     @SerializedName("stars")
     val rating: Int = 0
 

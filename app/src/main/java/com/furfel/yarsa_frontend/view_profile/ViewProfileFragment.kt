@@ -10,7 +10,7 @@ import com.furfel.yarsa_frontend.R
 private const val PROFILE_USERNAME = "profile"
 
 class ViewProfileFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
     private var profile: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
