@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="registerEditText.Error">
+        <item name="android:textColor">#AA2222</item>
+        <item name="android:backgroundTint">#AA2222</item>
+    </style>
+</resources>

@@ -23,4 +23,27 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="registerEditText.Error">
+        <item name="android:textColor">#AA2222</item>
+        <item name="android:background">#FFCCBB</item>
+    </style>
+
+    <style name="registerError">
+        <item name="android:textColor">#DF2211</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">9pt</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+
+    <style name="welcomeButton">
+        <item name="android:padding">16dp</item>
+        <item name="android:textSize">12pt</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:background">@drawable/welcome_button_background</item>
+    </style>
+
 </resources>
