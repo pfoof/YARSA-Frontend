@@ -21,7 +21,8 @@
 
         <Button
             style="@style/welcomeButton"
-            android:text="@string/action_sign_in" />
+            android:text="@string/action_sign_in"
+            android:id="@+id/signIn" />
 
         <Space
             android:layout_width="match_parent"
@@ -29,7 +30,8 @@
 
         <Button
             style="@style/welcomeButton"
-            android:text="@string/action_sign_up" />
+            android:text="@string/action_sign_up"
+            android:id="@+id/signUp" />
 
     </LinearLayout>
 
