@@ -67,7 +67,7 @@ class LoginFragment : Fragment() {
     }
 
     private suspend fun tryLogin() {
-        
+
     }
 
     private fun loginError(err: String) {
