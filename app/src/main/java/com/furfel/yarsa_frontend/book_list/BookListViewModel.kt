@@ -1,9 +1,10 @@
 package com.furfel.yarsa_frontend.book_list
 
 import androidx.lifecycle.MutableLiveData
-import com.furfel.yarsa_frontend.data.CoroutineViewModel
+import com.furfel.yarsa_frontend.CoroutineViewModel
 import com.furfel.yarsa_frontend.models.BookModel
 import java.lang.Exception
+import com.furfel.yarsa_frontend.Result
 
 class BookListViewModel(private val getBooks: GetBooks)
     : CoroutineViewModel() {
@@ -15,7 +16,7 @@ class BookListViewModel(private val getBooks: GetBooks)
         getBooks.execute(
             this, null,
             {books -> this.books.value = books},
-            {exception -> this.error.value = exception})
+            {exception -> this.error.value = exception.error })
     }
 
 }

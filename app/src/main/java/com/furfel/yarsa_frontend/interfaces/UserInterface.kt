@@ -1,14 +1,14 @@
 package com.furfel.yarsa_frontend.interfaces
 
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.POST
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface UserInterface {
     @POST("user/register")
-    fun registerUser(@Query("username") username: String, @Query("email") email: String, @Query("password") password: String): Call<String>
+    @FormUrlEncoded
+    fun registerUser(@Field("username") username: String, @Field("email") email: String, @Field("password") password: String): Call<String>
 
     @POST("user/login")
-    fun loginUser(@Query("username") username: String, @Query("password") password: String): Call<String>
+    @FormUrlEncoded
+    fun loginUser(@Field("username") username: String, @Field("password") password: String): Call<String>
 }

@@ -1,7 +1,7 @@
 package com.furfel.yarsa_frontend.book_list
 
 import com.furfel.yarsa_frontend.models.BookModel
-import com.furfel.yarsa_frontend.data.Result
+import com.furfel.yarsa_frontend.Result
 import java.lang.Exception
 import java.net.URL
 

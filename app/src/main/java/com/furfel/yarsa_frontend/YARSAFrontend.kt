@@ -3,6 +3,7 @@ package com.furfel.yarsa_frontend
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.furfel.yarsa_frontend.login.LoginFragment
 import com.furfel.yarsa_frontend.register.RegisterActivity
 import kotlinx.android.synthetic.main.welcome_layout.*
 
@@ -21,8 +22,9 @@ class YARSAFrontend : AppCompatActivity() {
 
         signIn.setOnClickListener {
             if(it.isEnabled) {
-                val intent = Intent("sign in activity")
-                startActivity(intent)
+                supportFragmentManager.beginTransaction()
+                    .add(R.id.mainLayout, LoginFragment())
+                    .commit()
             }
         }
     }
