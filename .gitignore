@@ -16,3 +16,4 @@
 /gradlew
 /gradlew.bat
 /.idea
+app/src/main/res/values/secret.xml
