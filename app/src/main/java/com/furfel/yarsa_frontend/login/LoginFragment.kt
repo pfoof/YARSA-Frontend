@@ -10,11 +10,17 @@ import android.widget.EditText
 import android.widget.TextView
 import com.furfel.yarsa_frontend.R
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.withContext
+import retrofit2.Retrofit
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.coroutineContext
 
 class LoginFragment : Fragment() {
+
+    val scope = MainScope()
+    val userInterface = Retrofit.Builder().baseUrl("https://pabis.eu").build()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,7 +73,9 @@ class LoginFragment : Fragment() {
     }
 
     private suspend fun tryLogin() {
+        withContext(Dispatchers.IO) {
 
+        }
     }
 
     private fun loginError(err: String) {
