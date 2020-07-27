@@ -8,20 +8,16 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import com.furfel.yarsa_frontend.R
-import com.furfel.yarsa_frontend.SpringError
+import com.furfel.yarsa_frontend.responses.SpringError
 import com.furfel.yarsa_frontend.interfaces.UserInterface
-import com.google.gson.Gson
 import com.google.gson.JsonIOException
-import com.google.gson.JsonParseException
 import com.google.gson.JsonSyntaxException
 import kotlinx.coroutines.*
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.BufferedReader
-import kotlin.coroutines.CoroutineContext
-import kotlin.coroutines.coroutineContext
+import java.util.*
 
 class LoginFragment : Fragment() {
 
@@ -46,6 +42,8 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val layout = inflater.inflate(R.layout.fragment_login, container, false)
+
+        layout.setOnClickListener {  }
 
         username = layout.findViewById(R.id.loginUsername)
         password = layout.findViewById(R.id.loginPassword)
@@ -90,27 +88,24 @@ class LoginFragment : Fragment() {
         signInButton?.isEnabled = true
     }
 
+    private fun <T>extractSessionKey(ex: Response<T>): String {
+        return UUID.randomUUID().toString()
+    }
+
     private suspend fun tryLogin(username: String, password: String) {
         withContext(Dispatchers.IO) {
             val call = userInterface.loginUser(username, password)
             val ex = call.execute()
-
-            if(ex.code() >= 400) {
-                ex.errorBody()?.let {
-                    try {
-                        val springException = Gson()
-                            .fromJson(it.charStream(), SpringError::class.java)
-                        withContext(Dispatchers.Main) { loginError(springException.message) }
-                    } catch (e: JsonIOException) {
-                        withContext(Dispatchers.Main) { loginError("Server error: I/O") }
-                    } catch (e: JsonSyntaxException) {
-                        withContext(Dispatchers.Main) { loginError("Server error: not a JSON format") }
-                    }
-                }
-            } else {
-                withContext(Dispatchers.Main) {
-                    Toast.makeText(this@LoginFragment.context, "Login successful", Toast.LENGTH_SHORT).show()
-                }
+            try {
+                val springException = SpringError.fromResponse(ex)
+                if(springException == null) {
+                    extractSessionKey(ex)
+                } else
+                    withContext(Dispatchers.Main) { loginError(springException.message) }
+            } catch (e: JsonIOException) {
+                withContext(Dispatchers.Main) { loginError("Server error: I/O") }
+            } catch (e: JsonSyntaxException) {
+                withContext(Dispatchers.Main) { loginError("Server error: not a JSON format") }
             }
 
         }

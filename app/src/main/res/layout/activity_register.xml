@@ -75,11 +75,17 @@
             android:visibility="gone"
             style="@style/registerError" />
 
+        <TextView
+            android:id="@+id/generalError"
+            android:text=""
+            android:visibility="gone"
+            style="@style/registerError" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:enabled="false"
+            android:enabled="true"
             android:id="@+id/signUpButton"
             android:text="Sign Up"/>
     </LinearLayout>

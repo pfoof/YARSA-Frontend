@@ -22,10 +22,27 @@ class YARSAFrontend : AppCompatActivity() {
 
         signIn.setOnClickListener {
             if(it.isEnabled) {
-                supportFragmentManager.beginTransaction()
-                    .add(R.id.mainLayout, LoginFragment())
-                    .commit()
+                loginFragment = LoginFragment().also {
+                    supportFragmentManager.beginTransaction()
+                        .add(R.id.mainLayout, it)
+                        .commit()
+                }
+
             }
         }
+    }
+
+    var loginFragment: LoginFragment? = null
+    override fun onBackPressed() {
+        loginFragment?.let {
+            if(supportFragmentManager.fragments.contains(it)) {
+                supportFragmentManager.beginTransaction()
+                    .remove(it)
+                    .commit()
+            }
+            return
+        }
+        super.onBackPressed()
+
     }
 }
